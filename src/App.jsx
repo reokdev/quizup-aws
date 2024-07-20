@@ -1,4 +1,5 @@
 import './App.css';
+import Quiz from "./Components/Quiz.jsx";
 import {Amplify} from 'aws-amplify';
 import { Authenticator, withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
@@ -12,6 +13,7 @@ const App = () => {
                 {({ signOut }) => (
                     <main>
                         <header className='App-header'>
+                            <Quiz />
                             <button
                                 onClick={signOut}
                                 style={{
