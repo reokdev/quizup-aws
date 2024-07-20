@@ -10,7 +10,7 @@ import {
     ListItem,
     ListIcon,
 } from '@chakra-ui/react';
-import { MdCheckCircle, MdError } from 'react-icons/md';
+import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons';
 import quizData from './quizData';
 
 function Quiz() {
@@ -75,7 +75,7 @@ function Quiz() {
                         <List spacing={3}>
                             {question.explanation.map((point, i) => (
                                 <ListItem key={i}>
-                                    <ListIcon as={answer === question.answer ? MdCheckCircle : MdError} color={answer === question.answer ? 'green.500' : 'red.500'} />
+                                    <ListIcon as={answer === question.answer ? CheckCircleIcon : WarningIcon} color={answer === question.answer ? 'green.500' : 'red.500'} />
                                     {point}
                                 </ListItem>
                             ))}
