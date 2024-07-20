@@ -1,5 +1,5 @@
 import './App.css';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, Button, Box, Flex } from '@chakra-ui/react';
 import Quiz from "./Components/Quiz.jsx";
 import {Amplify} from 'aws-amplify';
 import { Authenticator, withAuthenticator } from '@aws-amplify/ui-react';
@@ -10,28 +10,37 @@ Amplify.configure(awsExports);
 const App = () => {
     return (
         <ChakraProvider>
-            <div className="App">
-                <Authenticator>
-                    {({ signOut }) => (
-                        <main>
-                            <header className='App-header'>
-                                <Quiz />
-                                <button
-                                    onClick={signOut}
-                                    style={{
-                                        margin: '20px',
-                                        fontSize: '0.8rem',
-                                        padding: '5px 10px',
-                                        marginTop: '20px'
-                                    }}
-                                >
-                                    Sign Out
-                                </button>
-                            </header>
-                        </main>
-                    )}
-                </Authenticator>
-            </div>
+            <Authenticator>
+                {({ signOut }) => (
+                    <Box position="relative" minHeight="100vh">
+                        <Flex
+                            position="absolute"
+                            top={4}
+                            right={[0, 0, 4]}
+                            width={["100%", "auto"]}
+                            justifyContent={["center", "flex-end"]}
+                        >
+                            <Button
+                                onClick={signOut}
+                                size="sm"
+                                colorScheme="red"
+                            >
+                                Sign Out
+                            </Button>
+                        </Flex>
+                        <Flex
+                            className="App"
+                            direction="column"
+                            align="center"
+                            justify="center"
+                            minHeight="100vh"
+                            pt={16}
+                        >
+                            <Quiz />
+                        </Flex>
+                    </Box>
+                )}
+            </Authenticator>
         </ChakraProvider>
     );
 }
