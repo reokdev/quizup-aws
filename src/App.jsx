@@ -3,18 +3,17 @@ import {Amplify} from 'aws-amplify';
 import { Authenticator, withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import awsExports from './aws-exports';
-
 Amplify.configure(awsExports);
 
 const App = () => {
     return (
         <div className="App">
             <Authenticator>
-                {({ Logout }) => (
+                {({ signOut }) => (
                     <main>
                         <header className='App-header'>
                             <button
-                                onClick={Logout}
+                                onClick={signOut}
                                 style={{
                                     margin: '20px',
                                     fontSize: '0.8rem',
@@ -22,7 +21,7 @@ const App = () => {
                                     marginTop: '20px'
                                 }}
                             >
-                                Logout
+                                Sign Out
                             </button>
                         </header>
                     </main>
