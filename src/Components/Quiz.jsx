@@ -9,6 +9,7 @@ import {
     List,
     ListItem,
     ListIcon,
+    useBreakpointValue,
 } from '@chakra-ui/react';
 import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons';
 import quizData from './quizData';
@@ -23,6 +24,9 @@ function Quiz() {
     useEffect(() => {
         setQuestions([...quizData].sort(() => Math.random() - 0.5));
     }, []);
+
+    // responsive button sizing
+    const buttonFontSize = useBreakpointValue({ base: "xs", sm: "sm", md: "md" });
 
     // if no questions, show loading indicator rather than nothing
     if (questions.length === 0) return <Text>Loading...</Text>;
@@ -62,6 +66,11 @@ function Quiz() {
                         colorScheme={isAnswered ?
                             (option === question.answer ? 'green' :
                                 option === answer ? 'red' : 'gray') : 'blue'}
+                        fontSize={buttonFontSize}
+                        py={[2, 3]}
+                        px={[3, 4]}
+                        whiteSpace="normal"
+                        height="auto"
                         variant={isAnswered && option !== answer && option !== question.answer ? 'outline' : 'solid'}
                     >
                         {option}
