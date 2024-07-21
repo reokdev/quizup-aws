@@ -48,13 +48,13 @@ To run this project locally:
 
 ## Screenshots
 
-![Home Screen]('src/assets/home-screen.png')
+![Home Screen]('https://postimg.cc/CzVK1Q5Y')
 *Home Screen*
 
-![Quiz Question]('src/assets/quiz-question.png')
+![Quiz Question]('https://postimg.cc/QF8xgKcy')
 *Quiz Question Example*
 
-![Results Screen]('src/assets/results-screen.png')
+![Results Screen]('https://postimg.cc/F7gHJVkS')
 *Results Screen*
 
 ## Video Demonstration
