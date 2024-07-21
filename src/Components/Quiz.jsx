@@ -19,6 +19,7 @@ function Quiz() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [score, setScore] = useState(0);
     const [answer, setAnswer] = useState(null);
+    const [quizCompleted, setQuizCompleted] = useState(false);
 
     // choose a random q from dataset
     useEffect(() => {
@@ -28,8 +29,14 @@ function Quiz() {
     // responsive button sizing
     const buttonFontSize = useBreakpointValue({ base: "xs", sm: "sm", md: "md" });
 
-    // if no questions, show loading indicator rather than nothing
-    if (questions.length === 0) return <Text>Loading...</Text>;
+    useEffect(() => {
+        shuffleQuestions();
+    }, []);
+
+    const shuffleQuestions = () => {
+        setQuestions([...quizData].sort(() => Math.random() - 0.5));
+    };
+
     if (currentIndex >= questions.length) {
         return (
             <Container centerContent>
@@ -49,9 +56,43 @@ function Quiz() {
     };
 
     const nextQuestion = () => {
-        setCurrentIndex(i => i + 1);
-        setAnswer(null);
+        if (currentIndex < questions.length - 1) {
+            setCurrentIndex(prevIndex => prevIndex + 1);
+            setAnswer(null);
+        } else {
+            setQuizCompleted(true);
+        }
     };
+
+    const retakeQuiz = () => {
+        shuffleQuestions();
+        setCurrentIndex(0);
+        setScore(0);
+        setAnswer(null);
+        setQuizCompleted(false);
+    };
+
+    // if no questions, show loading indicator rather than nothing
+    if (questions.length === 0) return <Text>Loading...</Text>;
+
+    if (quizCompleted) {
+        return (
+            <Container centerContent>
+                <VStack spacing={6}>
+                    <Heading>Quiz Completed!</Heading>
+                    <Text fontSize="xl">Your score: {score} out of {questions.length}</Text>
+                    <Button
+                        onClick={retakeQuiz}
+                        colorScheme="blue"
+                        size="lg"
+                        fontSize={buttonFontSize}
+                    >
+                        Retake Quiz
+                    </Button>
+                </VStack>
+            </Container>
+        );
+    }
 
     return (
         <Container maxW="container.md" centerContent>
