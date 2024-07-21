@@ -48,25 +48,22 @@ To run this project locally:
 
 ## Screenshots
 
-![Home Screen]('https://postimg.cc/CzVK1Q5Y')
+![Home Screen](https://i.postimg.cc/5NXQPcMH/home-screen.png)
 *Home Screen*
 
-![Quiz Question]('https://postimg.cc/QF8xgKcy')
+![Quiz Question](https://i.postimg.cc/rwW0kSsM/quiz-question.png)
 *Quiz Question Example*
 
-![Results Screen]('https://postimg.cc/F7gHJVkS')
+![Results Screen](https://i.postimg.cc/Pr0p96tS/results-screen.png)
 *Results Screen*
 
 ## Video Demonstration
 
 Check out this short video demonstrating the confetti explosion on a correct answer:
 
-https://user-images.githubusercontent.com/reokdev/quizup-aws/assets/confetti-examples.mp4
+https://vimeo.com/987929816?share=copy
 
 *Confetti explosion on correct answer*
-
-If the video doesn't play, you can [download it here](assets/confetti-examples.mp4).
-
 
 ## Contributing
 
