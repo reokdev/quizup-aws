@@ -11,6 +11,7 @@ import {
     ListIcon,
     useBreakpointValue,
 } from '@chakra-ui/react';
+import ConfettiExplosion from 'react-confetti-explosion';
 import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons';
 import quizData from './quizData';
 
@@ -20,13 +21,8 @@ function Quiz() {
     const [score, setScore] = useState(0);
     const [answer, setAnswer] = useState(null);
     const [quizCompleted, setQuizCompleted] = useState(false);
+    const [isExploding, setIsExploding] = useState(false);
 
-    // choose a random q from dataset
-    useEffect(() => {
-        setQuestions([...quizData].sort(() => Math.random() - 0.5));
-    }, []);
-
-    // responsive button sizing
     const buttonFontSize = useBreakpointValue({ base: "xs", sm: "sm", md: "md" });
 
     useEffect(() => {
@@ -37,28 +33,20 @@ function Quiz() {
         setQuestions([...quizData].sort(() => Math.random() - 0.5));
     };
 
-    if (currentIndex >= questions.length) {
-        return (
-            <Container centerContent>
-                <Heading>Quiz Completed!</Heading>
-                <Text fontSize="xl">Score: {score}/{questions.length}</Text>
-            </Container>
-        );
-    }
-
-    const question = questions[currentIndex];
-    const isAnswered = answer !== null;
-
     const handleAnswer = (selectedAnswer) => {
-        if (isAnswered) return;
+        if (answer !== null) return;
         setAnswer(selectedAnswer);
-        if (selectedAnswer === question.answer) setScore(s => s + 1);
+        if (selectedAnswer === questions[currentIndex].answer) {
+            setScore(s => s + 1);
+            setIsExploding(true);
+        }
     };
 
     const nextQuestion = () => {
         if (currentIndex < questions.length - 1) {
             setCurrentIndex(prevIndex => prevIndex + 1);
             setAnswer(null);
+            setIsExploding(false);
         } else {
             setQuizCompleted(true);
         }
@@ -70,9 +58,9 @@ function Quiz() {
         setScore(0);
         setAnswer(null);
         setQuizCompleted(false);
+        setIsExploding(false);
     };
 
-    // if no questions, show loading indicator rather than nothing
     if (questions.length === 0) return <Text>Loading...</Text>;
 
     if (quizCompleted) {
@@ -94,8 +82,12 @@ function Quiz() {
         );
     }
 
+    const question = questions[currentIndex];
+    const isAnswered = answer !== null;
+
     return (
         <Container maxW="container.md" centerContent>
+            {isExploding && <ConfettiExplosion />}
             <VStack spacing={4} align="stretch" w="100%">
                 <Heading size="md">Question {currentIndex + 1}/{questions.length}</Heading>
                 <Text fontSize="lg" marginBottom={[4, 8]}>{question.question}</Text>
