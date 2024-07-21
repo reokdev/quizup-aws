@@ -98,7 +98,7 @@ function Quiz() {
         <Container maxW="container.md" centerContent>
             <VStack spacing={4} align="stretch" w="100%">
                 <Heading size="md">Question {currentIndex + 1}/{questions.length}</Heading>
-                <Text fontSize="lg">{question.question}</Text>
+                <Text fontSize="lg" marginBottom={[4, 8]}>{question.question}</Text>
                 {question.options.map(option => (
                     <Button
                         key={option}
