@@ -25,7 +25,7 @@ This application is an interactive quiz designed to help users prepare for the A
 
 ## Data Source
 
-The quiz questions (`quizData`) are sourced from [insert source here, e.g., "official AWS documentation", "a curated list by certified professionals", etc.]. These questions are designed to mimic the style and content of the actual AWS Certified Cloud Practitioner exam.
+The quiz questions (`quizData`) are sourced from official AWS Documentation. These questions are designed to mimic the style and content of the actual AWS Certified Cloud Practitioner exam.
 
 ## CI/CD with AWS Amplify
 
